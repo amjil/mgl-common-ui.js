@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="mn-Mong">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>mgl-common-ui</title>
+    <link rel="stylesheet" href="../styles/mgl-common-ui.css" />
+    <style>
+      html,
+      body {
+        margin: 0;
+        height: 100%;
+        overflow: hidden;
+        background: var(--mn-bg);
+      }
+
+      .demo-rail-title {
+        color: var(--mn-accent);
+        letter-spacing: 0.14em;
+        font-size: 15px;
+        padding: 0.5rem 0.35rem;
+      }
+
+      .demo-note {
+        font-size: 13px;
+        color: var(--mn-muted);
+        max-inline-size: 18rem;
+      }
+
+      .demo-card {
+        flex: 0 0 auto;
+        block-size: 11rem;
+        max-inline-size: 100%;
+        padding: 0.85rem 0.8rem;
+        background: var(--mn-surface);
+        border: 1px solid var(--mn-line);
+        border-radius: var(--mn-radius);
+        display: flex;
+        flex-direction: column; /* left → right: meta | body */
+        gap: 0.75rem;
+        overflow: hidden;
+      }
+
+      /* One vertical column: title then handle continue down the same line.
+         A second block/flex item would become the next column (to the right). */
+      .demo-card-meta {
+        flex: 0 0 auto;
+        align-self: start;
+        margin: 0;
+        font-size: 20px;
+        font-weight: 600;
+      }
+
+      .demo-handle {
+        font-size: 13px;
+        font-weight: 400;
+        color: var(--mn-muted);
+        padding-inline-start: 0.65em;
+      }
+
+      .demo-toast {
+        position: fixed;
+        bottom: 1.25rem;
+        right: 1.25rem;
+        z-index: 40;
+        padding: 0.7rem 0.9rem;
+        background: var(--mn-surface);
+        border: 1px solid var(--mn-line-strong);
+        border-radius: var(--mn-radius);
+        box-shadow: 0 12px 32px rgba(28, 34, 30, 0.12);
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="mn-shell">
+      <aside class="mn-rail">
+        <span class="mn-rail-link demo-rail-title">mgl</span>
+        <a class="mn-rail-link" href="#read">ᠤᠩᠰᠢᠬᠤ</a>
+        <a class="mn-rail-link" href="#write">ᠪᠢᠴᠢᠬᠦ</a>
+      </aside>
+
+      <main id="surface" class="mn-surface" data-mn-drag>
+        <div class="mn-surface-inner mn-columns">
+          <article id="read" class="mn-doc">
+            <h1 class="mn-h1">ᠮᠣᠩᠭᠣᠯ ᠪᠢᠴᠢᠭ</h1>
+            <p class="mn-p">
+              <span class="mn-lead-word">ᠣᠨ᠎ᠠ</span>
+              ᠨᠡᠭᠦᠨ ᠦᠳᠡᠭᠡ ᠪᠢᠴᠢᠭᠰᠡᠨ ᠪᠣᠯᠤᠨ᠎ᠠ
+              12:34
+            </p>
+            <p class="mn-p">
+              vertical-lr · columns left to right
+              <span class="mn-emoji">😀</span>
+            </p>
+            <blockquote class="mn-quote">Wheel, arrows, and drag all move this surface sideways.</blockquote>
+            <p class="demo-note mn-text">
+              Overlay chrome stays in .mn-overlay so it is not rotated.
+            </p>
+          </article>
+
+          <section class="demo-card">
+            <h2 class="mn-h2 demo-card-meta">
+              ᠨᠡᠶᠢᠲᠡ<span class="demo-handle">@handle</span>
+            </h2>
+            <p class="mn-p">A feed card is just a column: cap it with block-size.</p>
+          </section>
+
+          <section id="write" class="mn-stack">
+            <label class="mn-text">ᠪᠢᠴᠢᠬᠦ</label>
+            <textarea class="mn-textarea" placeholder="…"></textarea>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <script type="module">
+      import { install, wrapEmoji, portal, initVisualViewport } from "../src/index.js"
+
+      initVisualViewport()
+      install()
+
+      const toast = document.createElement("div")
+      toast.className = "demo-toast"
+      toast.innerHTML = wrapEmoji("mgl-common-ui ready ✨")
+      portal(toast)
+    </script>
+  </body>
+</html>

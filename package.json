@@ -1,0 +1,29 @@
+{
+  "name": "mgl-common-ui",
+  "version": "0.1.0",
+  "description": "Traditional Mongolian vertical-lr CSS primitives and scroll runtime for the web",
+  "type": "module",
+  "main": "./src/index.js",
+  "module": "./src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./style.css": "./styles/mgl-common-ui.css",
+    "./mgl-common-ui.css": "./styles/mgl-common-ui.css"
+  },
+  "files": [
+    "src",
+    "styles",
+    "demo"
+  ],
+  "scripts": {
+    "demo": "npx --yes serve . -p 5174",
+    "test": "node --test test/*.test.js"
+  },
+  "keywords": [
+    "mongolian",
+    "vertical-lr",
+    "writing-mode",
+    "mn-Mong"
+  ],
+  "license": "MIT"
+}
