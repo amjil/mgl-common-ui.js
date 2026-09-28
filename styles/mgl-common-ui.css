@@ -1,6 +1,6 @@
 /* mgl-common-ui — Traditional Mongolian vertical-lr primitives
  *
- * Default model (Nomio / Xamt):
+ * Default model:
  *   html/body stay horizontal-tb
  *   .mn-shell  is the horizontal chrome frame (rail | surface)
  *   .mn-surface is the only vertical-lr reading surface

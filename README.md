@@ -4,8 +4,6 @@ Traditional Mongolian (`mn-Mong`) **vertical-lr** primitives for the web: CSS la
 
 This is not a component kit. It does not include IME (`mgl-web-ime`) or the rich-text editor (`mongolian-editor.js`).
 
-Extracted from the shared kernel of three HTML apps — Nomio (reader), Xamt (chat), Mongol Zangila (feed) — without taking their product chrome.
-
 ## Model
 
 `html` / `body` stay `horizontal-tb`. Only `.mn-surface` flips to `vertical-lr`.
@@ -40,7 +38,7 @@ Do **not** set `writing-mode` on `html`/`body`. Every overlay then has to opt ba
 </script>
 ```
 
-Serve a Traditional Mongolian font at `/fonts/OyunQaganTig.ttf` (same path Nomio / Xamt / Zangila already use). Override `--mn-font-script` if you host it elsewhere.
+Serve a Traditional Mongolian font at `/fonts/OyunQaganTig.ttf`. Override `--mn-font-script` if you host it elsewhere.
 
 ```bash
 npm run demo   # http://localhost:5174/demo/
@@ -51,7 +49,7 @@ npm run demo   # http://localhost:5174/demo/
 ```html
 <div class="mn-shell">
   <aside class="mn-rail">
-    <a class="mn-rail-link" href="/">Nomio</a>
+    <a class="mn-rail-link" href="/">Home</a>
   </aside>
 
   <main class="mn-surface" data-mn-drag>
@@ -95,20 +93,6 @@ initVisualViewport()         // writes --mn-vh
 ```
 
 Tokens live on `:root` (`--mn-font-script`, `--mn-vh`, `--mn-field-extent`, `--mn-rail`, colors). Override them in the host app.
-
-## Mapping from existing apps
-
-Do not rename in-place. When a host adopts this package:
-
-| Here | Nomio | Xamt | Zangila |
-|---|---|---|---|
-| `.mn-shell` | `.app-shell` | `.xamt-app` | `.app-shell` |
-| `.mn-surface` | `.page.mongol-layout` | reading pane | `.page` |
-| `.mn-text` | (inherited) | `.mongol-text` | `.mongol-text` |
-| `.mn-latin` | ad-hoc `horizontal-tb` | `.latin-text` | `.latin` / `.horizontal-tb` |
-| `.mn-upright` | `.like-btn .count` | `.xamt-upright` | (handle stays rotated) |
-| `.mn-input` | editor host | `.mongol-input` | `.input-v` |
-| `install()` | wheel + keys | `mongolian-scroll.js` | `PageScroll` hook |
 
 IME and the block editor stay separate packages.
 
