@@ -109,16 +109,28 @@
           <section id="write" class="mn-stack">
             <label class="mn-text">ᠪᠢᠴᠢᠬᠦ</label>
             <textarea class="mn-textarea" placeholder="…"></textarea>
+            <label class="mn-text" for="demo-visibility">Visibility</label>
+            <select id="demo-visibility" class="mn-select">
+              <option value="private">Private — invite only</option>
+              <option value="public">Public — anyone can find and join</option>
+            </select>
           </section>
         </div>
       </main>
     </div>
 
     <script type="module">
-      import { install, wrapEmoji, portal, initVisualViewport } from "../src/index.js"
+      import {
+        install,
+        wrapEmoji,
+        portal,
+        initVisualViewport,
+        enhanceSelect,
+      } from "../src/index.js"
 
       initVisualViewport()
       install()
+      enhanceSelect(document.getElementById("demo-visibility"))
 
       const toast = document.createElement("div")
       toast.className = "demo-toast"

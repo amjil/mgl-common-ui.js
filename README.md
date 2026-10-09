@@ -2,7 +2,7 @@
 
 Traditional Mongolian (`mn-Mong`) **vertical-lr** primitives for the web: CSS layout conventions plus a small scroll runtime.
 
-This is not a component kit. It does not include IME (`mgl-web-ime`) or the rich-text editor (`mongolian-editor.js`).
+Small set of vertical-lr primitives — not a general component kit. It does not include IME (`mgl-web-ime`) or the rich-text editor (`mongolian-editor.js`).
 
 ## Model
 
@@ -76,8 +76,9 @@ npm run demo   # http://localhost:5174/demo/
 | `.mn-upright` | Optional tate-chu-yoko; **do not** use for time, `@handle`, or CSS terms in a column |
 | `.mn-upright-combine` | `text-combine-upright` for 1–2 digits |
 | `.mn-emoji` | Color emoji that must not rotate (desktop Chromium) |
-| `.mn-input` / `.mn-textarea` | Native fields — writing-mode is re-asserted |
+| `.mn-input` / `.mn-textarea` / `.mn-select` | Native fields — writing-mode is re-asserted |
 | `.mn-input-latin` | Same field, Latin typeface (email / password) |
+| `enhanceSelect(el)` / `<mn-select>` | Custom listbox that stays `vertical-lr` (native popups do not) |
 | `.mn-doc` `.mn-h1` `.mn-p` `.mn-quote` … | Reading blocks |
 | `[data-mn-drag]` | Touch/pointer drag → `scrollLeft` (link-dense feeds) |
 | `[data-mn-scroll-y]` | Nested vertical scroller; wheel is not remapped |
@@ -92,7 +93,11 @@ bindSurface(el, { drag: true })
 portal(node)                 // append to body as .mn-overlay
 wrapEmoji("hello 😀")        // → hello <span class="mn-emoji">😀</span>
 initVisualViewport()         // writes --mn-vh
+enhanceSelect(selectEl)      // vertical-lr listbox over a native <select>
 ```
+
+Native `<select>` menus ignore `writing-mode`. Prefer `enhanceSelect(select)` (keeps the
+`<select>` for form/LiveView) or `<mn-select>` with light-DOM `<option>` children.
 
 Tokens live on `:root` (`--mn-font-script`, `--mn-vh`, `--mn-field-extent`, `--mn-rail`, colors). Override them in the host app.
 
@@ -100,6 +105,7 @@ IME and the block editor stay separate packages.
 
 ## What this is not
 
+- Not a full form / design system (only primitives that break under vertical-lr, e.g. select)
 - Not buttons, feeds, chat bubbles, or posters
-- Not Phoenix LiveView hooks (wrap `install` / `bindSurface` in 20 lines if needed)
+- Not Phoenix LiveView hooks (wrap `install` / `enhanceSelect` in ~20 lines if needed)
 - Not a global `writing-mode` on `html`
