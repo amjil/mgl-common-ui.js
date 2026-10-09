@@ -82,10 +82,12 @@ npm run demo   # http://localhost:5174/demo/
 | `[data-mn-drag]` | Touch/pointer drag → `scrollLeft` (link-dense feeds) |
 | `[data-mn-scroll-y]` | Nested vertical scroller; wheel is not remapped |
 
+`.mn-surface` uses `overscroll-behavior-x: none`. `install()` also swallows leftover horizontal pans so Chromium/Safari do not treat them as Back/Forward (`historySwipe: false` to opt out).
+
 ### JS
 
 ```js
-install({ selector: ".mn-surface", wheel: true, keyboard: true, drag: true })
+install({ selector: ".mn-surface", wheel: true, keyboard: true, drag: true, historySwipe: true })
 bindSurface(el, { drag: true })
 portal(node)                 // append to body as .mn-overlay
 wrapEmoji("hello 😀")        // → hello <span class="mn-emoji">😀</span>
