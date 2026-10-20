@@ -60,6 +60,7 @@ export function enhanceSelect(select) {
   const list = document.createElement("ul")
   list.className = "mn-select-list"
   list.setAttribute("role", "listbox")
+  list.dataset.mnScrollX = ""
   list.tabIndex = -1
   list.hidden = true
   // Inline layout beats stale/cached stylesheets: options run left→right.
