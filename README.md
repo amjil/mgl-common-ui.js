@@ -56,10 +56,7 @@ npm run demo   # http://localhost:5174/demo/
     <div class="mn-surface-inner mn-columns">
       <article class="mn-doc">
         <h1 class="mn-h1">ᠮᠣᠩᠭᠣᠯ ᠪᠢᠴᠢᠭ</h1>
-        <p class="mn-p">
-          <span class="mn-lead-word">ᠮᠣᠩᠭᠣᠯ</span>
-          ᠪᠢᠴᠢᠭ 12:34
-        </p>
+        <p class="mn-p">ᠮᠣᠩᠭᠣᠯ ᠪᠢᠴᠢᠭ 12:34</p>
       </article>
       <textarea class="mn-textarea"></textarea>
     </div>
@@ -82,6 +79,7 @@ npm run demo   # http://localhost:5174/demo/
 | `.mn-doc` `.mn-h1` `.mn-p` `.mn-quote` … | Reading blocks |
 | `[data-mn-drag]` | Touch/pointer drag → `scrollLeft` (link-dense feeds) |
 | `[data-mn-scroll-y]` | Nested vertical scroller; wheel is not remapped |
+| `[data-mn-scroll-x]` | Vertical-lr menu / list; wheel maps deltaY → scrollLeft here first |
 
 `.mn-surface` uses `overscroll-behavior-x: none`. `install()` also swallows leftover horizontal pans so Chromium/Safari do not treat them as Back/Forward (`historySwipe: false` to opt out).
 
